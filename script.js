@@ -97,6 +97,10 @@ equal.addEventListener('click', ()=>{
         displayResult.textContent = 'Syntax Error';
         displayInput.textContent = '';
     }
+    else if(displayInput.textContent.slice(-1)=='*'||displayInput.textContent.slice(-1)=='+'||displayInput.textContent.slice(-1)=='-'||displayInput.textContent.slice(-1)=='%'||displayInput.textContent.slice(-1)=='**'||displayInput.textContent.slice(-1)=='/'){
+        displayResult.textContent = 'Syntax Error';
+        displayInput.textContent = '';
+    }
     else{
         displayResult.textContent = eval(displayInput.textContent);
         console.log(displayInput.textContent)
@@ -106,6 +110,12 @@ equal.addEventListener('click', ()=>{
 
 let answer = document.querySelector('.answer');
     answer.addEventListener('click', ()=>{
-        displayInput.textContent = displayResult.textContent;
+        if(displayResult.textContent === 'Syntax Error'){
+            displayInput.textContent = '';
+        }
+        else {
+            displayInput.textContent = displayResult.textContent;
+        }
+        
 
     })
