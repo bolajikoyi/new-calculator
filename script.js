@@ -41,7 +41,7 @@ for (let buttons of buttonNumbers){
     buttons.addEventListener('click', ()=>{
         if(buttons.textContent === '.' && displayInput.textContent.includes('.')) return
         else{
-            if(displayInput.textContent.length >= 27 || displayResult.textContent.length >=27) return
+            if(displayInput.textContent.length >=27 || displayResult.textContent.length >=27) return
             
             else {
                 this.btnValue = buttons.textContent;
@@ -60,12 +60,15 @@ for (let buttons of buttonNumbers){
 
 for (let buttons of buttonOpertors){
     buttons.addEventListener('click', ()=>{
-        console.dir(buttons.value)
-        this.operator = buttons.value;
-        console.log(displayInput.value)
-        displayInput.textContent = displayInput.textContent + this.operator;
+            console.dir(buttons.textContent)
+            this.operator = buttons.value;
+            console.log(displayInput.textContent)
+            displayInput.textContent = displayInput.textContent + this.operator;
+            console.log(buttons.value)
 
-        console.log(this.operator)
+            console.log(this.operator)
+        
+        
 
     })
 }
@@ -86,6 +89,23 @@ erase.addEventListener('click', ()=>{
 
 let equal = document.querySelector('.equal');
 equal.addEventListener('click', ()=>{
-    displayResult.textContent = eval(displayInput.textContent);
-    displayInput.textContent = '';
+    if(displayInput.textContent.includes('***')||displayInput.textContent.includes('****')||displayInput.textContent.includes('*****')){
+        displayResult.textContent = 'Syntax Error';
+        displayInput.textContent = '';
+    }
+    else if(displayInput.textContent.includes('++')||displayInput.textContent.includes('--')||displayInput.textContent.includes('//')||displayInput.textContent.includes('%%')){
+        displayResult.textContent = 'Syntax Error';
+        displayInput.textContent = '';
+    }
+    else{
+        displayResult.textContent = eval(displayInput.textContent);
+        console.log(displayInput.textContent)
+        displayInput.textContent = '';
+    }
 })
+
+let answer = document.querySelector('.answer');
+    answer.addEventListener('click', ()=>{
+        displayInput.textContent = displayResult.textContent;
+
+    })
