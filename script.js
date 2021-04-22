@@ -39,19 +39,32 @@ let buttonOpertors = document.querySelectorAll('.operator');
 
 for (let buttons of buttonNumbers){
     buttons.addEventListener('click', ()=>{
-        this.btnValue = buttons.textContent;
-        displayInput.textContent = displayInput.textContent + btnValue;
-        this.inputDisplay = displayInput.textContent;
-        console.log(this.inputDisplay);
-        console.log(typeof(this.inputDisplay))
-        console.log(this.operator)
+        if(buttons.textContent === '.' && displayInput.textContent.includes('.')) return
+        else{
+            if(displayInput.textContent.length >= 27 || displayResult.textContent.length >=27) return
+            
+            else {
+                this.btnValue = buttons.textContent;
+                displayInput.textContent = displayInput.textContent + btnValue;
+                this.inputDisplay = displayInput.textContent;
+                console.log(this.inputDisplay);
+                console.log(typeof(this.inputDisplay))
+                console.log(this.operator)
+            }
+            
+        }
+        
     })
 }
 
 
 for (let buttons of buttonOpertors){
     buttons.addEventListener('click', ()=>{
-        this.operator = buttons.textContent;
+        console.dir(buttons.value)
+        this.operator = buttons.value;
+        console.log(displayInput.value)
+        displayInput.textContent = displayInput.textContent + this.operator;
+
         console.log(this.operator)
 
     })
@@ -69,4 +82,10 @@ erase.addEventListener('click', ()=>{
     displayInput.textContent = displayInput.textContent.substr(0, displayInput.textContent.length - 1);
     console.log(displayInput.textContent);
 
+})
+
+let equal = document.querySelector('.equal');
+equal.addEventListener('click', ()=>{
+    displayResult.textContent = eval(displayInput.textContent);
+    displayInput.textContent = '';
 })
