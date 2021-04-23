@@ -44,12 +44,13 @@ for (let buttons of buttonNumbers){
             if(displayInput.textContent.length >=27 || displayResult.textContent.length >=27) return
             
             else {
-                this.btnValue = buttons.textContent;
+                btnValue = buttons.textContent;
                 displayInput.textContent = displayInput.textContent + btnValue;
-                this.inputDisplay = displayInput.textContent;
-                console.log(this.inputDisplay);
+                inputDisplay = displayInput.textContent;
+                console.log(inputDisplay);
                 console.log(typeof(this.inputDisplay))
                 console.log(this.operator)
+                console.dir(buttons)
             }
             
         }
@@ -60,16 +61,16 @@ for (let buttons of buttonNumbers){
 
 for (let buttons of buttonOpertors){
     buttons.addEventListener('click', ()=>{
-            console.dir(buttons.textContent)
-            this.operator = buttons.value;
+        if(displayInput.textContent.length >=27 || displayResult.textContent.length >=27) return
+        else {
+            operator = buttons.value;
             console.log(displayInput.textContent)
-            displayInput.textContent = displayInput.textContent + this.operator;
+            displayInput.textContent = displayInput.textContent + operator;
             console.log(buttons.value)
 
             console.log(this.operator)
-        
-        
-
+            console.dir(buttons)
+        }
     })
 }
 
