@@ -98,3 +98,52 @@ button:hover {
 .heartColor{
     color: red;
 }
+@media(max-width: 550px){
+    .container{
+        width: 100vw;
+        /* height: 100vh; */
+        overflow: auto;
+    }
+    footer{
+        width: 80%;
+    }
+    .calculator {
+        grid-template-columns: repeat(5, 50px);
+        grid-template-rows: 130px repeat(8, 50px);
+        background-color: #51524f;
+        padding: 15px;
+        border-radius: 25px;
+    }
+    button{
+        font-size: 1rem;
+    }
+    footer{
+        font-size: 0.8rem;
+        padding: 10px;
+    }
+}
+@media (max-width: 320px){
+    .container{
+        height: 100vh;
+    }
+    .calculator {
+        grid-template-columns: repeat(5, 45px);
+        grid-template-rows: 120px repeat(8, 45px);
+        background-color: #51524f;
+        padding: 15px;
+        border-radius: 20px;
+    }
+    footer{
+        display: none;
+    }
+    .result {
+        font-size: 1.5rem;
+    }
+    
+    .input {
+        font-size: 1rem;
+    }
+    button{
+        font-size: 0.8rem;
+    }
+}
