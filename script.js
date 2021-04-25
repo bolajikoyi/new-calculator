@@ -6,8 +6,9 @@ let pie = Math.PI;
 let LogE = Math.E;
 let Sqrt = Math.sqrt;
 let Sqr = Math.pow;
+let storedValue = localStorage.getItem('ans');
 
-// let cos
+
 
 // let ln = 1 / LogE;
 // let Lg = Math.log10;
@@ -25,25 +26,6 @@ let Sqr = Math.pow;
 //     modulo: '%'
 // }
 
-// function multiplication(num1,num2){
-//     return num1 * num2;;
-// }
-// function division(num1,num2){
-//     return num1 / num2;
-// }
-// function subtraction(num1,num2){
-//     return num1 - num2;
-// }
-// function addition(num1,num2){
-//     return num1 + num2;
-// }
-// function power(num1,num2){
-//     return Math.pow(num1,num2);
-// }
-// function modulo(num1,num2){
-//     num1 % num2;
-// }
-
 
 for (let buttons of buttonNumbers) {
     buttons.addEventListener('click', () => {
@@ -55,10 +37,6 @@ for (let buttons of buttonNumbers) {
                 btnValue = buttons.textContent;
                 displayInput.textContent = displayInput.textContent + btnValue;
                 inputDisplay = displayInput.textContent;
-                // console.log(inputDisplay);
-                // console.log(typeof(this.inputDisplay))
-                // console.log(this.operator)
-                // console.dir(buttons)
             }
 
         }
@@ -160,7 +138,6 @@ clear.addEventListener('click', () => {
     displayResult.value = displayResult.textContent;
     displayResult.textContent = '';
     localStorage.setItem('ans', displayResult.value);
-    console.log(displayResult.value);
     
 })
 
@@ -190,23 +167,18 @@ equal.addEventListener('click', () => {
         displayInput.textContent = '';
     }
      else if (displayInput.textContent.includes('π')) {
-        //console.log(displayInput.textContent);
         displayResult.textContent = eval(displayInput.textContent.replace(/π/g, pie));
-        //console.log(displayResult.textContent);
         displayInput.textContent = '';
-        //console.log(displayInput.textContent.replace(/π/g, pie));
+
     } else if (displayInput.textContent.includes('e')) {
-        //console.log(displayInput.textContent);
         displayResult.textContent = eval(displayInput.textContent.replace(/e/g, LogE));
-        //console.log(displayResult.textContent);
         displayInput.textContent = '';
-        //console.log(displayInput.textContent.replace(/π/g, pie));
+
     }
     else if (displayInput.textContent.includes('Ans')){
         localStorage.setItem('ans', displayResult.textContent);
-        let newValue = localStorage.getItem('ans');
-        if(newValue !=='' && displayResult.textContent === ''){
-            // displayResult.textContent = localStorage.getItem('ans');
+        if(storedValue && displayResult.textContent === ''){
+
         }
         else{
             displayResult.textContent = eval(displayInput.textContent.replace(/Ans/g, localStorage.getItem('ans')));
@@ -241,6 +213,11 @@ let answer = document.querySelector('.answer');
 answer.addEventListener('click', () => {
     if (displayResult.textContent === 'Syntax Error') {
         displayInput.textContent = '';
+    }
+    else if(storedValue && displayResult.textContent === ''){
+        displayResult.textContent = localStorage.getItem('ans');
+        displayInput.textContent = displayInput.textContent + 'Ans';
+
     }
     else if (displayInput.textContent.includes('Ans')) return;
     else if(displayResult === ''){
