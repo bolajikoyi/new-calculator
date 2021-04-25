@@ -227,3 +227,9 @@ answer.addEventListener('click', () => {
         displayInput.textContent = displayInput.textContent + 'Ans';
     }
 })
+hearts = document.querySelectorAll('.heart');
+for (let heart of hearts){
+    setInterval( async()=>{
+       await heart.classList.toggle('heartColor')
+    },1000)
+}

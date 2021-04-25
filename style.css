@@ -95,3 +95,6 @@ button:hover {
 .input {
     font-size: 1.5rem;
 }
+.heartColor{
+    color: red;
+}
