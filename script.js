@@ -1,7 +1,7 @@
 let displayInput = document.querySelector('.input');
 let displayResult = document.querySelector('.result');
 let buttonNumbers = document.querySelectorAll('.number');
-let buttonOpertors = document.querySelectorAll('.operator');
+let buttonOperators = document.querySelectorAll('.operator');
 let pie = Math.PI;
 let LogE = Math.E;
 // let ln = 1 / LogE;
@@ -62,21 +62,7 @@ for (let buttons of buttonNumbers) {
 }
 
 
-<<<<<<< HEAD
-for (let buttons of buttonOpertors) {
-    buttons.addEventListener('click', () => {
-        console.dir(buttons.textContent)
-        this.operator = buttons.value;
-        console.log(displayInput.textContent)
-        displayInput.textContent = displayInput.textContent + this.operator;
-        console.log(buttons.value)
-
-        console.log(this.operator)
-
-
-
-=======
-for (let buttons of buttonOpertors){
+for (let buttons of buttonOperators){
     buttons.addEventListener('click', ()=>{
         if(displayInput.textContent.length >=27 || displayResult.textContent.length >=27) return
         else {
@@ -88,7 +74,6 @@ for (let buttons of buttonOpertors){
             console.log(this.operator)
             console.dir(buttons)
         }
->>>>>>> b0538fbc2af574f40b9c425a9fbaf1eb296269cb
     })
 }
 
