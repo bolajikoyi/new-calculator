@@ -50,10 +50,10 @@ for (let buttons of buttonNumbers) {
                 btnValue = buttons.textContent;
                 displayInput.textContent = displayInput.textContent + btnValue;
                 inputDisplay = displayInput.textContent;
-                console.log(inputDisplay);
-                console.log(typeof(this.inputDisplay))
-                console.log(this.operator)
-                console.dir(buttons)
+                // console.log(inputDisplay);
+                // console.log(typeof(this.inputDisplay))
+                // console.log(this.operator)
+                // console.dir(buttons)
             }
 
         }
@@ -64,15 +64,18 @@ for (let buttons of buttonNumbers) {
 
 for (let buttons of buttonOperators){
     buttons.addEventListener('click', ()=>{
-        if(displayInput.textContent.length >=27 || displayResult.textContent.length >=27) return
+        if(displayInput.textContent.length >=27 || displayResult.textContent.length >=27) return;
+        else if(displayInput.textContent.includes('Ans') || displayResult.textContent !==''){
+            operator = buttons.value;
+            displayInput.textContent = 'Ans' + operator; 
+        }
         else {
             operator = buttons.value;
-            console.log(displayInput.textContent)
             displayInput.textContent = displayInput.textContent + operator;
-            console.log(buttons.value)
+            // console.log(buttons.value)
 
-            console.log(this.operator)
-            console.dir(buttons)
+            // console.log(this.operator)
+            // console.dir(buttons)
         }
     })
 }
@@ -137,13 +140,23 @@ factorial.addEventListener('click', () => {
 let clear = document.querySelector('.clear');
 clear.addEventListener('click', () => {
     displayInput.textContent = '';
+    displayResult.value = displayResult.textContent;
     displayResult.textContent = '';
+    localStorage.setItem('ans', displayResult.value);
+    console.log(displayResult.value);
+    
 })
 
 let erase = document.querySelector('.erase');
 erase.addEventListener('click', () => {
-    displayInput.textContent = displayInput.textContent.substr(0, displayInput.textContent.length - 1);
-    console.log(displayInput.textContent);
+    // When the last 3 characters are 'Ans', remove three characters, otherwise, remove one character
+    if(displayInput.textContent.substring(displayInput.textContent.length - 3) === 'Ans'){
+        displayInput.textContent = displayInput.textContent.substr(0, displayInput.textContent.length - 3);
+    }
+    else{
+        displayInput.textContent = displayInput.textContent.substr(0, displayInput.textContent.length - 1);
+        console.log(displayInput.textContent);
+    }
 
 })
 
@@ -158,7 +171,8 @@ equal.addEventListener('click', () => {
     } else if (displayInput.textContent.slice(-1) == '*' || displayInput.textContent.slice(-1) == '+' || displayInput.textContent.slice(-1) == '-' || displayInput.textContent.slice(-1) == '%' || displayInput.textContent.slice(-1) == '**' || displayInput.textContent.slice(-1) == '/') {
         displayResult.textContent = 'Syntax Error';
         displayInput.textContent = '';
-    } else if (displayInput.textContent.includes('π')) {
+    }
+     else if (displayInput.textContent.includes('π')) {
         //console.log(displayInput.textContent);
         displayResult.textContent = eval(displayInput.textContent.replace(/π/g, pie));
         //console.log(displayResult.textContent);
@@ -170,10 +184,22 @@ equal.addEventListener('click', () => {
         //console.log(displayResult.textContent);
         displayInput.textContent = '';
         //console.log(displayInput.textContent.replace(/π/g, pie));
-    } else {
+    }
+    else if (displayInput.textContent.includes('Ans')){
+        localStorage.setItem('ans', displayResult.textContent);
+        let newValue = localStorage.getItem('ans');
+        if(newValue !=='' && displayResult.textContent === ''){
+            // displayResult.textContent = localStorage.getItem('ans');
+        }
+        else{
+            displayResult.textContent = eval(displayInput.textContent.replace(/Ans/g, localStorage.getItem('ans')));
+            localStorage.setItem('ans', displayResult.textContent)
+        }
+    }
+     else {
         displayResult.textContent = eval(displayInput.textContent);
-        console.log(displayResult.textContent);
-        displayInput.textContent = '';
+        localStorage.setItem('ans', displayResult.textContent)
+        
     }
 })
 
@@ -181,9 +207,12 @@ let answer = document.querySelector('.answer');
 answer.addEventListener('click', () => {
     if (displayResult.textContent === 'Syntax Error') {
         displayInput.textContent = '';
-    } else {
-        displayInput.textContent = displayResult.textContent;
     }
-
-
+    else if (displayInput.textContent.includes('Ans')) return;
+    else if(displayResult === ''){
+        displayResult.textContent = localStorage.getItem('ans');
+    }
+    else {
+        displayInput.textContent = displayInput.textContent + 'Ans';
+    }
 })
