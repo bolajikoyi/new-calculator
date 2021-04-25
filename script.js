@@ -4,6 +4,11 @@ let buttonNumbers = document.querySelectorAll('.number');
 let buttonOperators = document.querySelectorAll('.operator');
 let pie = Math.PI;
 let LogE = Math.E;
+let Sqrt = Math.sqrt;
+let Sqr = Math.pow;
+
+// let cos
+
 // let ln = 1 / LogE;
 // let Lg = Math.log10;
 // this.btnValue;
@@ -62,9 +67,9 @@ for (let buttons of buttonNumbers) {
 }
 
 
-for (let buttons of buttonOperators){
-    buttons.addEventListener('click', ()=>{
-        if(displayInput.textContent.length >=27 || displayResult.textContent.length >=27) return
+for (let buttons of buttonOperators) {
+    buttons.addEventListener('click', () => {
+        if (displayInput.textContent.length >= 27 || displayResult.textContent.length >= 27) return
         else {
             operator = buttons.value;
             console.log(displayInput.textContent)
@@ -78,13 +83,25 @@ for (let buttons of buttonOperators){
 }
 
 
-// let log = document.querySelector('.log');
-// log.addEventListener('click', () => {
-//     displayInput.textContent = 'log'
-//     '('
-//     displayInput.textContent ')
-//     ';
-// })
+let square = document.querySelector('.power2');
+square.addEventListener('click', () => {
+    displayResult.textContent = Math.pow(displayInput.textContent, 2);
+})
+
+
+
+
+
+let root = document.querySelector('.root');
+root.addEventListener('click', () => {
+    displayInput.textContent = '√' + displayInput.textContent;
+    // let disp = displayInput.textContent.substr(1);
+    // disp = Math.sqrt(disp);
+    // displayResult.textContent = eval(disp);
+    // displayInput.textContent = '';
+})
+
+
 
 let frst = document.querySelector('.frst');
 frst.addEventListener('click', () => {
@@ -170,6 +187,23 @@ equal.addEventListener('click', () => {
         //console.log(displayResult.textContent);
         displayInput.textContent = '';
         //console.log(displayInput.textContent.replace(/π/g, pie));
+    } else if (displayInput.textContent.includes('√')) {
+        let disp = displayInput.textContent.substr(1);
+        disp = Math.sqrt(disp);
+        displayResult.textContent = eval(disp);
+        displayInput.textContent = '';
+        //console.log(disp);
+        // console.log(displayInput.textContent.replace(/√/g, Math.sqrt).slice(0));
+        // //displayResult.textContent = eval(+'(' + displayInput.textContent.slice(3) + ')');
+        // console.log(displayResult.textContent);
+        // displayInput.textContent = '';
+        //console.log(displayInput.textContent.replace(/π/g, pie));
+        // } else if {
+        //     displayResult.textContent = Math.pow(displayInput.textContent, 2);
+
+
+
+
     } else {
         displayResult.textContent = eval(displayInput.textContent);
         console.log(displayResult.textContent);
