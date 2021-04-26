@@ -7,8 +7,34 @@ let LogE = Math.E;
 let Sqrt = Math.sqrt;
 let Sqr = Math.pow;
 let storedValue = localStorage.getItem('ans');
+let radians = false;
 
 
+let cos = document.querySelector('.cos');
+cos.addEventListener('click', () => {
+    displayInput.textContent = displayInput.textContent + 'cos(';
+})
+
+let sin = document.querySelector('.sin');
+sin.addEventListener('click', () => {
+    displayInput.textContent = displayInput.textContent + 'sin(';
+})
+
+let tan = document.querySelector('.tan');
+tan.addEventListener('click', () => {
+    displayInput.textContent = displayInput.textContent + 'tan(';
+})
+
+// let rad = document.querySelector('.rad');
+// rad.addEventListener('click', () => {
+//     if (radians === false) {
+//         radians = true;
+//         console.log(true);
+//     } else {
+//         radians = false;
+//         console.log(false);
+//     }
+// })
 
 // let ln = 1 / LogE;
 // let Lg = Math.log10;
@@ -45,14 +71,13 @@ for (let buttons of buttonNumbers) {
 }
 
 
-for (let buttons of buttonOperators){
-    buttons.addEventListener('click', ()=>{
-        if(displayInput.textContent.length >=27 || displayResult.textContent.length >=27) return;
-        else if(displayInput.textContent.includes('Ans') || displayResult.textContent !==''){
+for (let buttons of buttonOperators) {
+    buttons.addEventListener('click', () => {
+        if (displayInput.textContent.length >= 27 || displayResult.textContent.length >= 27) return;
+        else if (displayInput.textContent.includes('Ans') || displayResult.textContent !== '') {
             operator = buttons.value;
-            displayInput.textContent = 'Ans' + operator; 
-        }
-        else {
+            displayInput.textContent = 'Ans' + operator;
+        } else {
             operator = buttons.value;
             displayInput.textContent = displayInput.textContent + operator;
             // console.log(buttons.value)
@@ -138,16 +163,15 @@ clear.addEventListener('click', () => {
     displayResult.value = displayResult.textContent;
     displayResult.textContent = '';
     localStorage.setItem('ans', displayResult.value);
-    
+
 })
 
 let erase = document.querySelector('.erase');
 erase.addEventListener('click', () => {
     // When the last 3 characters are 'Ans', remove three characters, otherwise, remove one character
-    if(displayInput.textContent.substring(displayInput.textContent.length - 3) === 'Ans'){
+    if (displayInput.textContent.substring(displayInput.textContent.length - 3) === 'Ans') {
         displayInput.textContent = displayInput.textContent.substr(0, displayInput.textContent.length - 3);
-    }
-    else{
+    } else {
         displayInput.textContent = displayInput.textContent.substr(0, displayInput.textContent.length - 1);
         console.log(displayInput.textContent);
     }
@@ -165,8 +189,7 @@ equal.addEventListener('click', () => {
     } else if (displayInput.textContent.slice(-1) == '*' || displayInput.textContent.slice(-1) == '+' || displayInput.textContent.slice(-1) == '-' || displayInput.textContent.slice(-1) == '%' || displayInput.textContent.slice(-1) == '**' || displayInput.textContent.slice(-1) == '/') {
         displayResult.textContent = 'Syntax Error';
         displayInput.textContent = '';
-    }
-     else if (displayInput.textContent.includes('π')) {
+    } else if (displayInput.textContent.includes('π')) {
         displayResult.textContent = eval(displayInput.textContent.replace(/π/g, pie));
         displayInput.textContent = '';
 
@@ -174,18 +197,15 @@ equal.addEventListener('click', () => {
         displayResult.textContent = eval(displayInput.textContent.replace(/e/g, LogE));
         displayInput.textContent = '';
 
-    }
-    else if (displayInput.textContent.includes('Ans')){
+    } else if (displayInput.textContent.includes('Ans')) {
         localStorage.setItem('ans', displayResult.textContent);
-        if(storedValue && displayResult.textContent === ''){
+        if (storedValue && displayResult.textContent === '') {
 
-        }
-        else{
+        } else {
             displayResult.textContent = eval(displayInput.textContent.replace(/Ans/g, localStorage.getItem('ans')));
             localStorage.setItem('ans', displayResult.textContent)
         }
-    }
-  else if (displayInput.textContent.includes('√')) {
+    } else if (displayInput.textContent.includes('√')) {
         let disp = displayInput.textContent.substr(1);
         disp = Math.sqrt(disp);
         displayResult.textContent = eval(disp);
@@ -202,10 +222,31 @@ equal.addEventListener('click', () => {
 
 
 
+    } else if (displayInput.textContent.includes('cos(')) {
+        let disp = displayInput.textContent.substr(4) * Math.PI / 180;
+        disp = Math.cos(disp);
+        displayResult.textContent = eval(disp);
+        displayInput.textContent = '';
+
+
+    } else if (displayInput.textContent.includes('sin(')) {
+        let disp = displayInput.textContent.substr(4) * Math.PI / 180;
+        disp = Math.sin(disp);
+        displayResult.textContent = eval(disp);
+        displayInput.textContent = '';
+
+
+    } else if (displayInput.textContent.includes('tan(')) {
+        let disp = displayInput.textContent.substr(4) * Math.PI / 180;
+        disp = Math.tan(disp);
+        displayResult.textContent = eval(disp);
+        displayInput.textContent = '';
+
+
     } else {
         displayResult.textContent = eval(displayInput.textContent);
         localStorage.setItem('ans', displayResult.textContent)
-        
+
     }
 })
 
@@ -213,23 +254,20 @@ let answer = document.querySelector('.answer');
 answer.addEventListener('click', () => {
     if (displayResult.textContent === 'Syntax Error') {
         displayInput.textContent = '';
-    }
-    else if(storedValue && displayResult.textContent === ''){
+    } else if (storedValue && displayResult.textContent === '') {
         displayResult.textContent = localStorage.getItem('ans');
         displayInput.textContent = displayInput.textContent + 'Ans';
 
-    }
-    else if (displayInput.textContent.includes('Ans')) return;
-    else if(displayResult === ''){
+    } else if (displayInput.textContent.includes('Ans')) return;
+    else if (displayResult === '') {
         displayResult.textContent = localStorage.getItem('ans');
-    }
-    else {
+    } else {
         displayInput.textContent = displayInput.textContent + 'Ans';
     }
 })
 hearts = document.querySelectorAll('.heart');
-for (let heart of hearts){
-    setInterval( async()=>{
-       await heart.classList.toggle('heartColor')
-    },1000)
+for (let heart of hearts) {
+    setInterval(async() => {
+        await heart.classList.toggle('heartColor')
+    }, 1000)
 }
