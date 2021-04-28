@@ -5,6 +5,7 @@
 
 body {
     margin: 0;
+    background-color: rgb(209, 222, 224);
 }
 
 footer {
@@ -42,6 +43,7 @@ footer a:hover {
     background-color: #51524f;
     padding: 15px;
     border-radius: 32px;
+    border: 3px solid #00000033;
 }
 
 .display {
@@ -72,6 +74,18 @@ button {
     box-shadow: 5px 5px 10px -3px #00000040, -5px -5px 15px 3px #444443;
 }
 
+.clear {
+    color: rgb(255, 72, 0);
+}
+
+.clear:hover {
+    color: rgb(255, 118, 64);
+    border-color: rgb(255, 72, 0);
+    cursor: pointer;
+    transform: translateY(-0.1em);
+    box-shadow: 0 0.5em 0.5em -0.4em rgb(255, 72, 0);
+}
+
 button:focus {
     outline: none;
 }
@@ -100,7 +114,7 @@ button:hover {
     color: red;
 }
 
-@media(min-width: 320px) {
+@media(max-width: 1500px) {
     .container {
         width: 100vw;
         /* height: 100vh; */
