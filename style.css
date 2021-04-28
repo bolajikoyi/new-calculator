@@ -102,6 +102,14 @@ button:hover {
     box-shadow: 0 0.5em 0.5em -0.4em rgb(243, 233, 97);
 }
 
+#selected_angle {
+    color: rgb(243, 233, 97);
+    border-color: rgb(243, 233, 97);
+    cursor: pointer;
+    transform: translateY(-0.1em);
+    box-shadow: 0 0.5em 0.5em -0.4em rgb(243, 233, 97);
+}
+
 .result {
     font-size: 2rem;
 }

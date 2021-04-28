@@ -7,7 +7,7 @@ let LogE = Math.E;
 let Sqrt = Math.sqrt;
 let Sqr = Math.pow;
 let storedValue = localStorage.getItem('ans');
-let radians = false;
+let radians = true;
 
 
 let cos = document.querySelector('.cos');
@@ -25,16 +25,40 @@ tan.addEventListener('click', () => {
     displayInput.textContent = displayInput.textContent + 'tan(';
 })
 
-// let rad = document.querySelector('.rad');
-// rad.addEventListener('click', () => {
-//     if (radians === false) {
-//         radians = true;
-//         console.log(true);
-//     } else {
-//         radians = false;
-//         console.log(false);
-//     }
-// })
+let asin = document.querySelector('.asin');
+asin.addEventListener('click', () => {
+    displayInput.textContent = displayInput.textContent + 'asin(';
+})
+
+let acos = document.querySelector('.acos');
+acos.addEventListener('click', () => {
+    displayInput.textContent = displayInput.textContent + 'acos(';
+})
+
+let atan = document.querySelector('.atan');
+atan.addEventListener('click', () => {
+    displayInput.textContent = displayInput.textContent + 'atan(';
+})
+
+let rad = document.querySelector('.rad');
+rad.addEventListener('click', () => {
+    rad.id = 'selected_angle'
+    deg.id = ''
+
+    console.log("radians clicked")
+    radians = true
+    console.log(`radians: ${radians}`)
+})
+
+let deg = document.querySelector('.deg');
+deg.addEventListener('click', () => {
+    rad.id = ''
+    deg.id = 'selected_angle'
+
+    console.log("degrees clicked")
+    radians = false
+    console.log(`radians: ${radians}`)
+})
 
 // let ln = 1 / LogE;
 // let Lg = Math.log10;
@@ -222,26 +246,114 @@ equal.addEventListener('click', () => {
 
 
 
-    } else if (displayInput.textContent.includes('cos(')) {
-        let disp = displayInput.textContent.substr(4) * Math.PI / 180;
-        disp = Math.cos(disp);
-        displayResult.textContent = eval(disp);
+    } else if (displayInput.textContent.includes('asin(')) {
+        let number = displayInput.textContent.substr(5)
+            // asin gives angle in radians
+        console.log("asin " + number)
+        let result = Math.asin(number)
+
+        // Math.acos() returns only radians so if the user enters degrees we need to convert it
+        if (!radians) {
+            // transform to degrees
+            result = result * Math.PI / 180
+        }
+
+        console.log(`result: ${result}`)
+        displayResult.textContent = eval(result);
         displayInput.textContent = '';
 
+    } else if (displayInput.textContent.includes('acos(')) {
+        let number = displayInput.textContent.substr(5)
+            // asin gives angle in radians
+        console.log("acos " + number)
+        let result = Math.acos(number)
+
+        // Math.acos() returns only radians so if the user enters degrees we need to convert it
+        if (!radians) {
+            // transform to degrees
+            result = result * Math.PI / 180
+        }
+
+        console.log(`result: ${result}`)
+        displayResult.textContent = eval(result);
+        displayInput.textContent = '';
+
+    } else if (displayInput.textContent.includes('atan(')) {
+        let number = displayInput.textContent.substr(5)
+            // asin gives angle in radians
+        console.log("atan " + number)
+        let result = Math.atan(number)
+
+        // Math.atan() returns only radians so if the user enters degrees we need to convert it
+        if (!radians) {
+            // transform to degrees
+            result = result * Math.PI / 180
+        }
+
+        console.log(`result: ${result}`)
+        displayResult.textContent = eval(result);
+        displayInput.textContent = '';
 
     } else if (displayInput.textContent.includes('sin(')) {
-        let disp = displayInput.textContent.substr(4) * Math.PI / 180;
-        disp = Math.sin(disp);
-        displayResult.textContent = eval(disp);
+        // a.substr(a.lastIndexOf("(")+1);
+        let number = displayInput.textContent.substr(4)
+
+        // Math.sin() takes only radians so if the user enters degrees we need to convert it
+        if (!radians) {
+            // transform to degrees
+            if (number == 180) {
+                number = 0
+            } else {
+                number = number * Math.PI / 180
+            }
+        }
+
+        let result = Math.sin(number)
+
+        console.log(`result: ${result}`)
+        displayResult.textContent = eval(result);
+        displayInput.textContent = '';
+
+    } else if (displayInput.textContent.includes('cos(')) {
+        let number = displayInput.textContent.substr(4)
+        let result = 0
+
+        // Math.cos() takes only radians so if the user enters degrees we need to convert it
+        if (!radians) {
+            console.log("cos with degrees: " + number)
+
+            // transform to degrees
+            if (number != 90) {
+                result = Math.cos(number * Math.PI / 180)
+            }
+        } else {
+            console.log("cos with radians: " + number)
+            result = Math.cos(number)
+        }
+
+        console.log(`result: ${result}`)
+        displayResult.textContent = eval(result);
         displayInput.textContent = '';
 
 
     } else if (displayInput.textContent.includes('tan(')) {
-        let disp = displayInput.textContent.substr(4) * Math.PI / 180;
-        disp = Math.tan(disp);
-        displayResult.textContent = eval(disp);
-        displayInput.textContent = '';
+        let number = displayInput.textContent.substr(4)
 
+        // Math.tan() takes only radians so if the user enters degrees we need to convert it
+        if (!radians) {
+            // transform to degrees
+            if (number == 180) {
+                number = 0
+            } else {
+                number = number * Math.PI / 180
+            }
+        }
+
+        let result = Math.tan(number)
+
+        console.log(`result: ${result}`)
+        displayResult.textContent = eval(result);
+        displayInput.textContent = '';
 
     } else {
         displayResult.textContent = eval(displayInput.textContent);
