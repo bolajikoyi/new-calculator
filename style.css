@@ -103,11 +103,9 @@ button:hover {
 }
 
 #selected_angle {
-    color: rgb(243, 233, 97);
+    color: rgb(233, 218, 18);
     border-color: rgb(243, 233, 97);
     cursor: pointer;
-    transform: translateY(-0.1em);
-    box-shadow: 0 0.5em 0.5em -0.4em rgb(243, 233, 97);
 }
 
 .result {
