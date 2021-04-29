@@ -239,35 +239,51 @@ equal.addEventListener('click', () => {
 
     } else if (displayInput.textContent.includes('asin(')) {
         let number = displayInput.textContent.substr(5)
-            // asin gives angle in radians
-        console.log("asin " + number)
-        let result = Math.asin(number)
+        if (number > 1 || number < -1){
+            displayInput.textContent = '';
+            displayResult.textContent = 'Math Error!';
 
-        // Math.acos() returns only radians so if the user enters degrees we need to convert it
-        if (!radians) {
+        }
+        else{
+                // asin gives angle in radians
+            console.log("asin " + number)
+            let result = Math.asin(number)
+
+            // Math.acos() returns only radians so if the user enters degrees we need to convert it
+            if (!radians) {
             // transform to degrees
             result = result * Math.PI / 180
         }
 
-        console.log(`result: ${result}`)
-        displayResult.textContent = eval(result);
-        displayInput.textContent = '';
+            console.log(`result: ${result}`)
+            displayResult.textContent = eval(result);
+            displayInput.textContent = '';
+        }
+        
 
     } else if (displayInput.textContent.includes('acos(')) {
         let number = displayInput.textContent.substr(5)
-            // asin gives angle in radians
-        console.log("acos " + number)
-        let result = Math.acos(number)
+        if (number > 1 || number < -1){
+            displayInput.textContent = '';
+            displayResult.textContent = 'Math Error!';
 
-        // Math.acos() returns only radians so if the user enters degrees we need to convert it
-        if (!radians) {
+        }
+        else{
+            // asin gives angle in radians
+            console.log("acos " + number)
+            let result = Math.acos(number)
+
+            // Math.acos() returns only radians so if the user enters degrees we need to convert it
+            if (!radians) {
             // transform to degrees
             result = result * Math.PI / 180
-        }
+            }
 
-        console.log(`result: ${result}`)
-        displayResult.textContent = eval(result);
-        displayInput.textContent = '';
+            console.log(`result: ${result}`)
+            displayResult.textContent = eval(result);
+            displayInput.textContent = '';
+        }
+            
 
     } else if (displayInput.textContent.includes('atan(')) {
         let number = displayInput.textContent.substr(5)
