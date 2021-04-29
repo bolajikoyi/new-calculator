@@ -231,7 +231,9 @@ equal.addEventListener('click', () => {
 
     } else if (displayInput.textContent.includes('sin(')) {
         let disp = displayInput.textContent.substr(4) * Math.PI / 180;
-        disp = Math.sin(disp);
+        disp = String(Math.sin(disp));
+        console.log(disp)
+        console.log(typeof(disp))
         displayResult.textContent = eval(disp);
         displayInput.textContent = '';
 
