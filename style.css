@@ -33,8 +33,7 @@ footer a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%
-    /* margin-top: 30px; */
+    margin-top: 30px;
 }
 
 .calculator {
@@ -125,7 +124,6 @@ button:hover {
 /* @media(max-width: 1500px) { */
     .container {
         width: 100vw;
-        height: 100vh;
         overflow: auto;
     }
     footer {
@@ -148,9 +146,6 @@ button:hover {
 }
 
 @media (max-width: 320px) {
-    .container {
-        height: 100vh;
-    }
     .calculator {
         grid-template-columns: repeat(5, 45px);
         grid-template-rows: 120px repeat(8, 45px);
