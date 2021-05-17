@@ -158,6 +158,7 @@ logE.addEventListener('click', () => {
 let factorial = document.querySelector('.factorial');
 factorial.addEventListener('click', () => {
     if (displayInput.textContent === '') return;
+
     else{
         displayInput.textContent = displayInput.textContent + '!';
         let len = displayInput.textContent.length;
@@ -166,7 +167,7 @@ factorial.addEventListener('click', () => {
         for (n = 2; n <= y; n++) {
             x = x * n;
         }
-    displayResult.textContent = x;
+        displayResult.textContent = x;
     }
     
 
@@ -186,6 +187,7 @@ erase.addEventListener('click', () => {
     // When the last 3 characters are 'Ans', remove three characters, otherwise, remove one character
     if (displayInput.textContent.substring(displayInput.textContent.length - 3) === 'Ans') {
         displayInput.textContent = displayInput.textContent.substr(0, displayInput.textContent.length - 3);
+
     } else {
         displayInput.textContent = displayInput.textContent.substr(0, displayInput.textContent.length - 1);
         console.log(displayInput.textContent);
@@ -195,15 +197,23 @@ erase.addEventListener('click', () => {
 
 let equal = document.querySelector('.equal');
 equal.addEventListener('click', () => {
-    if (displayInput.textContent.includes('***') || displayInput.textContent.includes('****') || displayInput.textContent.includes('*****')) {
+    if (displayInput.textContent.includes('***') || displayInput.textContent.includes('****') || 
+    displayInput.textContent.includes('*****')) {
         displayResult.textContent = 'Syntax Error';
         displayInput.textContent = '';
-    } else if (displayInput.textContent.includes('++') || displayInput.textContent.includes('--') || displayInput.textContent.includes('//') || displayInput.textContent.includes('%%')) {
+
+    } else if (displayInput.textContent.includes('++') || displayInput.textContent.includes('--') || 
+    displayInput.textContent.includes('//') || displayInput.textContent.includes('%%')) {
         displayResult.textContent = 'Syntax Error';
         displayInput.textContent = '';
-    } else if (displayInput.textContent.slice(-1) == '*' || displayInput.textContent.slice(-1) == '+' || displayInput.textContent.slice(-1) == '-' || displayInput.textContent.slice(-1) == '%' || displayInput.textContent.slice(-1) == '**' || displayInput.textContent.slice(-1) == '/') {
+
+    } else if (displayInput.textContent.slice(-1) == '*' || 
+    displayInput.textContent.slice(-1) == '+' || displayInput.textContent.slice(-1) == '-' || 
+    displayInput.textContent.slice(-1) == '%' || displayInput.textContent.slice(-1) == '**' || 
+    displayInput.textContent.slice(-1) == '/') {
         displayResult.textContent = 'Syntax Error';
         displayInput.textContent = '';
+
     } else if (displayInput.textContent.includes('π')) {
         displayResult.textContent = eval(displayInput.textContent.replace(/π/g, pie));
         displayInput.textContent = '';
@@ -220,6 +230,7 @@ equal.addEventListener('click', () => {
             displayResult.textContent = eval(displayInput.textContent.replace(/Ans/g, localStorage.getItem('ans')));
             localStorage.setItem('ans', displayResult.textContent)
         }
+
     } else if (displayInput.textContent.includes('√')) {
         let disp = displayInput.textContent.substr(1);
         disp = Math.sqrt(disp);
